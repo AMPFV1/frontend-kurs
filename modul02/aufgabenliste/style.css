@@ -1,0 +1,29 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#aufgabenListe {
+    list-style: none;
+    padding: 0;
+}
+
+#aufgabenListe li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+#aufgabenListe li.erledigt .aufgabe-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.loeschen {
+    cursor: pointer;
+}
