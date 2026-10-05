@@ -34,9 +34,16 @@ btnBuchen.addEventListener("click", () => {
     const selectedTrainerName = trainerSelect.value;
     const selectedTrainer = trainerListe.find(trainer => trainer.name === selectedTrainerName);
 
-    if (selectedTrainer) {
-        alert(`Trainer ${selectedTrainer.name} wurde erfolgreich gebucht!`);
+    const buchungsdatum = (document.getElementById("date") as HTMLInputElement).value;
+    const buchungsInfo = document.getElementById("buchungsInfo") as HTMLParagraphElement;
+
+    if (!selectedTrainer) {
+        buchungsInfo.textContent = "Bitte wählen Sie einen Trainer aus.";
+    }else if (!buchungsdatum) {
+        buchungsInfo.textContent = "Bitte wählen Sie ein Datum aus.";
+    } else if(Date.parse(buchungsdatum) < Date.now()) {
+        buchungsInfo.textContent = "Bitte wählen Sie ein zukünftiges Datum aus.";
     } else {
-        alert("Bitte wählen Sie einen Trainer aus.");
+        buchungsInfo.textContent = `Trainer ${selectedTrainer.name} wurde für ${buchungsdatum} erfolgreich gebucht!`;
     }
 });
