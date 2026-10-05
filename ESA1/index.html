@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Tennis Guide</title>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <header>
@@ -15,6 +16,7 @@
                 <li><a href="#grundlagen">Grundlagen</a></li>
                 <li><a href="#schlaege">Schläge</a></li>
                 <li><a href="#training">Training</a></li>
+                <li><a href="#kontakt">Trainer buchen</a></li>
             </ul>
         </nav>
     </header>
@@ -44,7 +46,22 @@
                 <p>Ein ausgewogenes Trainingsprogramm sollte auch mentale Aspekte berücksichtigen, wie Konzentration, Stressbewältigung und taktisches Denken.</p>
             </article>
         </section>
-
+        <section aria-label="Bereich Kontakt">
+            <h2>Trainer buchen</h2>
+            <article>
+                <p>Trainer können täglich für eine Stunde von 17:00Uhr bis 18:00Uhr gebucht werden.</p>
+                <p>Es stehen 4 Trainer mit unterschiedlichen Fachgebieten zur Verfügung.</p>
+            </article>
+        </section>
+        <h3>Trainer direkt auswählen und buchen</h3>
+        <label for="date">Wählen Sie ein Datum:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="trainer">Wählen Sie einen Trainer:</label>
+        <select id="trainer" name="trainer" required>
+            <option value="">--Bitte wählen--</option>
+        </select>
+        <button id="btnBuchen">Buchen</button>
+        <article id="buchungsInfo" aria-live="polite"></article>
     </main>
     <footer aria-label="Fußbereich">
         <p>2024 Tennis Guide. All rights reserved.</p>

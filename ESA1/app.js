@@ -1,42 +1,26 @@
-
+"use strict";
 ////npx -p typescript tsc D:\_FrontendDev\frontend-kurs\ESA1\app.ts
-
-//Mindestens ein Interface das eine Datenstruktur beschreibt. 
-//Mindestens zwei Funktionen mit typisierten Parametern und Rückgabewert. 
-//Mindestens eine Array-Methode (map, filter, find oder reduce) wird verwendet. 
-
-//Tennistrainer buchen
-
-interface Trainer {
-    name: string;
-    fachgebiet: string;
-    erfahrung: number; // in Jahren
-}
-
-const trainerListe: Trainer[] = [
+const trainerListe = [
     { name: "Max Mustermann", fachgebiet: "Grundlagen", erfahrung: 5 },
     { name: "Erika Musterfrau", fachgebiet: "Schläge", erfahrung: 3 },
     { name: "John Doe", fachgebiet: "Training", erfahrung: 4 },
-    { name: "Jane Smith", fachgebiet: "Fitness", erfahrung: 6}
+    { name: "Jane Smith", fachgebiet: "Fitness", erfahrung: 6 }
 ];
-
-
-const trainerSelect = document.getElementById("trainer") as HTMLSelectElement;
+const trainerSelect = document.getElementById("trainer");
 trainerListe.forEach(trainer => {
     const option = document.createElement("option");
     option.value = trainer.name;
     option.textContent = `${trainer.name} - ${trainer.fachgebiet} (${trainer.erfahrung} Jahre Erfahrung)`;
     trainerSelect.appendChild(option);
 });
-
-const btnBuchen = document.getElementById("btnBuchen") as HTMLButtonElement;
+const btnBuchen = document.getElementById("btnBuchen");
 btnBuchen.addEventListener("click", () => {
     const selectedTrainerName = trainerSelect.value;
     const selectedTrainer = trainerListe.find(trainer => trainer.name === selectedTrainerName);
-
     if (selectedTrainer) {
         alert(`Trainer ${selectedTrainer.name} wurde erfolgreich gebucht!`);
-    } else {
+    }
+    else {
         alert("Bitte wählen Sie einen Trainer aus.");
     }
 });
