@@ -45,3 +45,31 @@ a {
 a:hover {
     text-decoration: underline;
 }
+#buchungsInfo.erfolg {
+    color: #1e7a46;
+    background-color: #e4f3ea;
+    border: 1px solid #1e7a46;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+#buchungsInfo.erfolg::before {
+    content: "\2714";
+    margin-right: 0.5rem;
+}
+#buchungsInfo.fehler {
+    color: #b3261e;
+    background-color: #fbe9e7;
+    border: 1px solid #b3261e;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+#buchungsInfo.fehler::before {
+    content: "\2716";
+    margin-right: 0.5rem;
+}

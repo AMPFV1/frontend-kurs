@@ -50,5 +50,10 @@ btnBuchen.addEventListener("click", () => {
     const buchungsdatum = (document.getElementById("date") as HTMLInputElement).value;
     const buchungsInfo = document.getElementById("buchungsInfo") as HTMLElement;
 
-    buchungsInfo.textContent = pruefeBuchung(selectedTrainer, buchungsdatum);
+    const meldung = pruefeBuchung(selectedTrainer, buchungsdatum);
+    buchungsInfo.textContent = meldung;
+    // Erfolg grün, Fehler rot hervorheben (Styling in style.css)
+    const erfolgreich = meldung.includes("erfolgreich gebucht");
+    buchungsInfo.classList.toggle("erfolg", erfolgreich);
+    buchungsInfo.classList.toggle("fehler", !erfolgreich);
 });
