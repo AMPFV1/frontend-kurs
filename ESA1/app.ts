@@ -27,7 +27,7 @@ function pruefeBuchung(trainer: Trainer | undefined, datum: string): string {
         return "Bitte wählen Sie einen Trainer aus.";
     } else if (!datum) {
         return "Bitte wählen Sie ein Datum aus.";
-    } else if (new Date(`${datum}`).getTime() < Date.now()) {
+    } else if (new Date(`${datum}T17:00`).getTime() < Date.now()) {
         return "Bitte wählen Sie ein zukünftiges Datum aus.";
     } else {
         return `Trainer ${trainer.name} wurde für ${datum} erfolgreich gebucht!`;
