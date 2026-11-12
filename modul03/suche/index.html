@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzersuche</title>
+    <script src="suche.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+        }
+        header h1 {
+            margin: 0;
+        }
+        footer {
+            text-align: center;
+        }
+        main {
+            padding: 1rem;
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.6rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .tipp {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .loading {
+            display: none;
+        }
+        .fehler {
+            display: none;
+            color: #b3261e;
+            background-color: #fbe9e7;
+            border: 1px solid #b3261e;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .email {
+            display: block;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Benutzersuche</h1>
+    </header>
+    <main>
+        <label for="suchfeld">Benutzername</label>
+        <input type="search" id="suchfeld" placeholder="z. B. Bret" autocomplete="off">
+        <p class="tipp">Gesucht wird nach dem genauen Benutzernamen, z. B. Bret, Antonette oder Samantha.</p>
+
+        <p id="loading" class="loading" aria-live="polite">Suche läuft …</p>
+        <p id="fehler" class="fehler" role="alert"></p>
+        <p id="hinweis" aria-live="polite"></p>
+        <ul id="liste" aria-label="Suchergebnisse"></ul>
+    </main>
+    <footer>
+        <p>Modul 03 – Suchfunktion mit Debouncing</p>
+    </footer>
+</body>
+</html>
