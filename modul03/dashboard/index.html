@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mini-Dashboard</title>
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Mini-Dashboard</h1>
+        <p>Daten von jsonplaceholder.typicode.com</p>
+    </header>
+    <main>
+        <p id="loading" class="loading" aria-live="polite">Daten werden geladen …</p>
+        <ul id="fehler" class="fehler" role="alert"></ul>
+
+        <section class="kacheln" aria-label="Kennzahlen">
+            <article class="kachel">
+                <h2>Benutzer</h2>
+                <p id="anzahl-benutzer" class="zahl">…</p>
+            </article>
+            <article class="kachel">
+                <h2>Posts</h2>
+                <p id="anzahl-posts" class="zahl">…</p>
+            </article>
+            <article class="kachel">
+                <h2>Erledigte Todos</h2>
+                <p id="anzahl-todos" class="zahl">…</p>
+            </article>
+        </section>
+
+        <section class="posts" aria-labelledby="h-posts">
+            <h2 id="h-posts">Die 5 neuesten Posts</h2>
+            <ul id="neueste-posts"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>Modul 03 – Mini-Dashboard mit mehreren APIs</p>
+    </footer>
+</body>
+</html>

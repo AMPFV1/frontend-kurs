@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+header h1 {
+    margin: 0;
+}
+header p, footer p {
+    margin: 0.25rem 0 0;
+}
+footer {
+    text-align: center;
+}
+main {
+    padding: 1rem;
+    max-width: 900px;
+}
+
+/* Lade- und Fehlermeldung */
+.loading {
+    display: none;
+}
+.fehler {
+    display: none;
+    color: #b3261e;
+    background-color: #fbe9e7;
+    border: 1px solid #b3261e;
+    border-radius: 6px;
+    padding: 1rem 1rem 1rem 2rem;
+}
+
+/* Kennzahlen-Kacheln */
+.kacheln {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+.kachel {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+}
+.kachel h2 {
+    font-size: 1rem;
+    color: #777;
+    margin: 0;
+}
+.zahl {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007BFF;
+    margin: 0.5rem 0 0;
+}
+
+/* Neueste Posts */
+.posts ul {
+    list-style: none;
+    padding: 0;
+}
+.posts li {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+}
+.autor {
+    display: block;
+    color: #777;
+    font-size: 0.9rem;
+}
