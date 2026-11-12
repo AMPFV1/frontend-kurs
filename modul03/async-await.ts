@@ -59,13 +59,20 @@ async function testen(): Promise<void> {
     await ablauf();
     await ablaufParallel();
 
-    const person = await parseJSON<Person>('{"name": "Anna", "alter": 30}');
-    console.log(`Gültiges JSON: ${person.name} ist ${person.alter} Jahre alt`);
-
+    // Test 1: gültiger JSON-String
     try {
-        await parseJSON<Person>('{name: Anna}');
-    } catch (error) {
-        console.error("Fehler abgefangen:", error instanceof Error ? error.message : error);
+        const person = await parseJSON<Person>('{"name": "Anna", "alter": 30}');
+        console.log(`Gültiges JSON: ${person.name} ist ${person.alter} Jahre alt`);
+    } catch (fehler) {
+        console.error("Fehler:", fehler instanceof Error ? fehler.message : fehler);
+    }
+
+    // Test 2: ungültiger JSON-String
+    try {
+        const person = await parseJSON<Person>('{name: Anna}');
+        console.log(`Gültiges JSON: ${person.name} ist ${person.alter} Jahre alt`);
+    } catch (fehler) {
+        console.error("Fehler:", fehler instanceof Error ? fehler.message : fehler);
     }
 }
 

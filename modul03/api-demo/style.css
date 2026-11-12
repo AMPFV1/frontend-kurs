@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+header h1 {
+    margin: 0;
+}
+header p, footer p {
+    margin: 0.25rem 0 0;
+}
+footer {
+    text-align: center;
+}
+main {
+    padding: 1rem;
+}
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0062cc;
+}
+button:disabled {
+    background-color: #999;
+    cursor: wait;
+}
+
+/* Lade- und Fehlermeldung */
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.loading::before {
+    /* einfacher Spinner */
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 3px solid #ccc;
+    border-top-color: #007BFF;
+    border-radius: 50%;
+    animation: drehen 0.8s linear infinite;
+}
+@keyframes drehen {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.fehler {
+    display: none;
+    color: #b3261e;
+    background-color: #fbe9e7;
+    border: 1px solid #b3261e;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+/* Karten */
+.post-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.post-karte {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+.post-karte h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+}
+.post-karte p {
+    margin: 0;
+}
+.post-karte .post-info {
+    color: #777;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}

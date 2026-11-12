@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>API Demo – Posts</title>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>API Demo</h1>
+        <p>Posts von jsonplaceholder.typicode.com</p>
+    </header>
+    <main>
+        <button id="neu-laden" type="button">Neu laden</button>
+        <p id="loading" class="loading" aria-live="polite">Posts werden geladen …</p>
+        <p id="fehler" class="fehler" role="alert"></p>
+        <section id="liste" class="post-liste" aria-label="Liste der Posts"></section>
+    </main>
+    <footer>
+        <p>Modul 03 – Fetch API mit TypeScript</p>
+    </footer>
+</body>
+</html>
