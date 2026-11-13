@@ -7,6 +7,7 @@ import Abzeichen from './komponenten/Abzeichen'
 import Zaehler from './komponenten/Zaehler'
 import TodoApp from './komponenten/TodoApp'
 import BenutzerListe from './komponenten/BenutzerListe'
+import BenutzerPosts from './komponenten/BenutzerPosts'
 import './App.css'
 
 const musterProdukte = [
@@ -27,6 +28,7 @@ function App() {
       <Zaehler />
       <TodoApp />
       <BenutzerListe />
+      <BenutzerPosts />
     </>
   )
 }
