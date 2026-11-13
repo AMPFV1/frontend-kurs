@@ -8,6 +8,7 @@ import Zaehler from './komponenten/Zaehler'
 import TodoApp from './komponenten/TodoApp'
 import BenutzerListe from './komponenten/BenutzerListe'
 import BenutzerPosts from './komponenten/BenutzerPosts'
+import KontaktFormular from './komponenten/KontaktFormular'
 import './App.css'
 
 const musterProdukte = [
@@ -29,6 +30,7 @@ function App() {
       <TodoApp />
       <BenutzerListe />
       <BenutzerPosts />
+      <KontaktFormular />
     </>
   )
 }

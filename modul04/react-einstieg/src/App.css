@@ -182,3 +182,18 @@
     border-right-color: var(--border);
   }
 }
+
+/* Kontaktformular */
+.fehler {
+  display: block;
+  color: #b3261e;
+}
+.erfolg {
+  color: #1e7a46;
+  font-weight: bold;
+}
+.zeichen {
+  display: block;
+  color: #777;
+  font-size: 0.9em;
+}
