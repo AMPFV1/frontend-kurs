@@ -5,6 +5,7 @@ import Avatar from './komponenten/Avatar'
 import avatarBild from './assets/images.jfif'
 import Abzeichen from './komponenten/Abzeichen'
 import Zaehler from './komponenten/Zaehler'
+import TodoApp from './komponenten/TodoApp'
 import './App.css'
 
 const musterProdukte = [
@@ -23,6 +24,7 @@ function App() {
       <Avatar name="Max Mustermann" bildUrl={avatarBild} />
       <Abzeichen status="aktiv" />
       <Zaehler />
+      <TodoApp />
     </>
   )
 }
