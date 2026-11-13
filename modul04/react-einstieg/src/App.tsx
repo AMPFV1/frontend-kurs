@@ -4,6 +4,7 @@ import BenutzerInfo from './komponenten/BenutzerInfo'
 import Avatar from './komponenten/Avatar'
 import avatarBild from './assets/images.jfif'
 import Abzeichen from './komponenten/Abzeichen'
+import Zaehler from './komponenten/Zaehler'
 import './App.css'
 
 const musterProdukte = [
@@ -21,6 +22,7 @@ function App() {
       <BenutzerInfo name="Max Mustermann" email="max.mustermann@example.com" />
       <Avatar name="Max Mustermann" bildUrl={avatarBild} />
       <Abzeichen status="aktiv" />
+      <Zaehler />
     </>
   )
 }
