@@ -5,6 +5,7 @@ import Produkte from './seiten/Produkte'
 import ProduktDetail from './seiten/ProduktDetail'
 import Kontakt from './seiten/Kontakt'
 import Todos from './seiten/Todos'
+import Orakel from './seiten/Orakel'
 import NichtGefunden from './seiten/NichtGefunden'
 import './App.css'
 
@@ -19,6 +20,7 @@ function App(): React.JSX.Element {
           <Route path="/produkte/:id" element={<ProduktDetail />} />
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/todos" element={<Todos />} />
+          <Route path="/orakel" element={<Orakel />} />
           <Route path="/404" element={<NichtGefunden />} />
           {/* Alle unbekannten URLs auf die 404-Seite umleiten */}
           <Route path="*" element={<Navigate to="/404" replace />} />
