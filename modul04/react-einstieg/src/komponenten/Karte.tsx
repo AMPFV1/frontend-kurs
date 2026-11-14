@@ -1,7 +1,4 @@
-interface KarteProps {
-  titel: string;
-  children: React.ReactNode;
-}
+import type { KarteProps } from '../typen/props';
 
 function Karte({ titel, children }: KarteProps): React.JSX.Element {
   return (

@@ -1,21 +1,8 @@
 import { useState } from 'react';
+import { MIN_NACHRICHT, pruefeAlle, pruefeFeld } from '../utils/validierung';
+import type { KontaktFormDaten, KontaktFormFehler } from '../typen/formular';
 
-interface FormDaten {
-  name: string;
-  email: string;
-  betreff: string;
-  nachricht: string;
-  prioritaet: 'niedrig' | 'mittel' | 'hoch';
-}
-
-interface FormFehler {
-  name?: string;
-  email?: string;
-  betreff?: string;
-  nachricht?: string;
-}
-
-const leeresFormular: FormDaten = {
+const leeresFormular: KontaktFormDaten = {
   name: '',
   email: '',
   betreff: '',
@@ -23,49 +10,10 @@ const leeresFormular: FormDaten = {
   prioritaet: 'mittel',
 };
 
-const MIN_NACHRICHT = 20;
-
-// Prüft ein einzelnes Feld und gibt die Fehlermeldung zurück (oder undefined)
-function pruefeFeld(feld: keyof FormFehler, daten: FormDaten): string | undefined {
-  switch (feld) {
-    case 'name':
-      return daten.name.trim().length < 2
-        ? 'Name muss mindestens 2 Zeichen haben.'
-        : undefined;
-    case 'email': {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return !emailRegex.test(daten.email)
-        ? 'Bitte eine gueltige E-Mail-Adresse eingeben.'
-        : undefined;
-    }
-    case 'betreff':
-      return daten.betreff.trim().length < 5
-        ? 'Betreff muss mindestens 5 Zeichen haben.'
-        : undefined;
-    case 'nachricht':
-      return daten.nachricht.trim().length < MIN_NACHRICHT
-        ? `Nachricht muss mindestens ${MIN_NACHRICHT} Zeichen haben.`
-        : undefined;
-  }
-}
-
-// Prüft alle Felder auf einmal
-function pruefeAlle(daten: FormDaten): FormFehler {
-  const felder: (keyof FormFehler)[] = ['name', 'email', 'betreff', 'nachricht'];
-  const neueFehler: FormFehler = {};
-  felder.forEach(feld => {
-    const meldung = pruefeFeld(feld, daten);
-    if (meldung) {
-      neueFehler[feld] = meldung;
-    }
-  });
-  return neueFehler;
-}
-
 function KontaktFormular(): React.JSX.Element {
-  const [daten, setDaten] = useState<FormDaten>(leeresFormular);
-  const [fehler, setFehler] = useState<FormFehler>({});
-  const [erfolg, setErfolg] = useState<boolean>(false);
+  const [daten, setDaten] = useState<KontaktFormDaten>(leeresFormular);
+  const [fehler, setFehler] = useState<KontaktFormFehler>({});
+  const [isErfolgreich, setIsErfolgreich] = useState<boolean>(false);
 
   // Allgemeiner Change-Handler
   const handleChange = (
@@ -77,19 +25,19 @@ function KontaktFormular(): React.JSX.Element {
 
     // Fehler beim Tippen zuruecksetzen, Erfolgsmeldung ausblenden
     setFehler(prev => ({ ...prev, [name]: undefined }));
-    setErfolg(false);
+    setIsErfolgreich(false);
   };
 
   // Echtzeit-Validierung: Feld wird geprüft, sobald es verlassen wird
   const handleBlur = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
-    const feld = e.target.name as keyof FormFehler;
+    const feld = e.target.name as keyof KontaktFormFehler;
     setFehler(prev => ({ ...prev, [feld]: pruefeFeld(feld, daten) }));
   };
 
   // Senden-Button nur aktiv, wenn alle Felder gültig sind
-  const formularGueltig = Object.keys(pruefeAlle(daten)).length === 0;
+  const isFormularGueltig = Object.keys(pruefeAlle(daten)).length === 0;
 
   // Submit-Handler
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -100,7 +48,7 @@ function KontaktFormular(): React.JSX.Element {
     if (Object.keys(neueFehler).length > 0) return;
 
     console.log('Formular abgesendet:', daten);
-    setErfolg(true);
+    setIsErfolgreich(true);
 
     // Formular zurücksetzen
     setDaten(leeresFormular);
@@ -117,7 +65,7 @@ function KontaktFormular(): React.JSX.Element {
     <form onSubmit={handleSubmit} noValidate>
       <h2>Kontaktformular</h2>
 
-      {erfolg && <p className='erfolg'>Vielen Dank! Ihre Nachricht wurde gesendet.</p>}
+      {isErfolgreich && <p className='erfolg'>Vielen Dank! Ihre Nachricht wurde gesendet.</p>}
 
       <div>
         <label htmlFor='name'>Name</label>
@@ -186,7 +134,7 @@ function KontaktFormular(): React.JSX.Element {
 
       <button
         type='submit'
-        disabled={!formularGueltig}
+        disabled={!isFormularGueltig}
       >
         Senden
       </button>

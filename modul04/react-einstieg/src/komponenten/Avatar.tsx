@@ -1,7 +1,4 @@
-interface AvatarProps {
-  name: string;
-  bildUrl: string;
-}
+import type { AvatarProps } from '../typen/props';
 
 function Avatar({ name, bildUrl }: AvatarProps): React.JSX.Element {
   return (

@@ -1,12 +1,6 @@
 // src/hooks/useMutation.ts — Hook fuer schreibende Operationen
 import { useState } from 'react';
-
-interface UseMutationErgebnis<T, U> {
-  ausfuehren: (daten: T) => Promise<U | null>;
-  isLaden: boolean;
-  fehler: string | null;
-  erfolg: boolean;
-}
+import type { UseMutationErgebnis } from '../typen/hooks';
 
 function useMutation<T, U>(
   url: string,

@@ -8,7 +8,7 @@ import Todos from './seiten/Todos'
 import NichtGefunden from './seiten/NichtGefunden'
 import './App.css'
 
-function App() {
+function App(): React.JSX.Element {
   return (
     <>
       <Navigation />

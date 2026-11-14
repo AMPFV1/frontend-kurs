@@ -1,50 +1,12 @@
-import { useState, useEffect } from 'react'
-import Karte from './Karte'
+import BenutzerKarte from './BenutzerKarte'
+import useFetch from '../hooks/useFetch'
+import type { Benutzer } from '../typen/benutzer'
 
-interface BenutzerProps {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    website: string;
-}
+const API_URL = 'https://jsonplaceholder.typicode.com/users'
 
-const BenutzerListe = () => {
-  // State für die drei Zustände: Daten, Loading, Fehler
-  const [benutzer, setBenutzer] = useState<BenutzerProps[]>([])
-  const [isLaden, setIsLaden] = useState(true)
-  const [fehler, setFehler] = useState<string | null>(null)
-  // Wird bei 'Neu laden' erhöht und löst dadurch useEffect erneut aus
-  const [ladeVersuch, setLadeVersuch] = useState(0)
-
-  useEffect(() => {
-    const ladeBenutzer = async () => {
-      setIsLaden(true)
-      setFehler(null)
-
-      try {
-        const antwort = await fetch('https://jsonplaceholder.typicode.com/users')
-
-        // fetch() wirft bei 404 oder 500 keinen Fehler, deshalb antwort.ok prüfen
-        if (!antwort.ok) {
-          throw new Error(`HTTP Fehler ${antwort.status}: ${antwort.statusText}`)
-        }
-
-        const daten: BenutzerProps[] = await antwort.json()
-        setBenutzer(daten)
-      } catch (e) {
-        setFehler(e instanceof Error ? e.message : 'Ein unbekannter Fehler ist aufgetreten.')
-      } finally {
-        setIsLaden(false)
-      }
-    }
-
-    ladeBenutzer()
-  }, [ladeVersuch])
-
-  const neuLaden = () => {
-    setLadeVersuch(ladeVersuch + 1)
-  }
+function BenutzerListe(): React.JSX.Element {
+  // Laden, Fehler und 'Neu laden' übernimmt der useFetch-Hook
+  const { daten: benutzer, isLaden, fehler, neuLaden } = useFetch<Benutzer[]>(API_URL)
 
   return (
     <div>
@@ -54,19 +16,11 @@ const BenutzerListe = () => {
       {isLaden && <p>Benutzer werden geladen …</p>}
 
       {!isLaden && fehler && (
-        <p style={{ color: 'red' }}>Die Benutzer konnten nicht geladen werden. ({fehler})</p>
+        <p className="fehler">Die Benutzer konnten nicht geladen werden. ({fehler})</p>
       )}
 
-      {!isLaden && !fehler && benutzer.map((b) => (
-        <Karte key={b.id} titel={b.name}>
-          <p>E-Mail: {b.email}</p>
-          <p>
-            Website:{' '}
-            <a href={`https://${b.website}`} target="_blank" rel="noopener noreferrer">
-              {b.website}
-            </a>
-          </p>
-        </Karte>
+      {!isLaden && !fehler && benutzer?.map((b) => (
+        <BenutzerKarte key={b.id} benutzer={b} />
       ))}
     </div>
   )

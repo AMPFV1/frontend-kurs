@@ -8,9 +8,10 @@ import Zaehler from '../komponenten/Zaehler'
 import TodoApp from '../komponenten/TodoApp'
 import BenutzerListe from '../komponenten/BenutzerListe'
 import BenutzerPosts from '../komponenten/BenutzerPosts'
+import type { Produkt } from '../typen/produkt'
 
 // Musterdaten — zum Testen des Platzhalters durch [] ersetzen
-const musterProdukte = [
+const musterProdukte: Produkt[] = [
   { id: 1, name: "Produkt 1", preis: 19.99 },
   { id: 2, name: "Produkt 2", preis: 29.99 }
 ]

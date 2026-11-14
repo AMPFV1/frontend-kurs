@@ -1,13 +1,7 @@
 // Lokale Produktliste — wird von Produkte.tsx und ProduktDetail.tsx verwendet
-export interface Produkt {
-  id: number;
-  name: string;
-  preis: number;
-  kategorie: string;
-  beschreibung: string;
-}
+import type { ProduktDetails } from '../typen/produkt';
 
-export const produkte: Produkt[] = [
+export const produkte: ProduktDetails[] = [
   {
     id: 1,
     name: 'Tennisschläger Pro',

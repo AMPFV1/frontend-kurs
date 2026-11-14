@@ -1,55 +1,45 @@
 // State: aufgaben: Aufgabe[] (mit 3 Beispiel-Aufgaben als Anfangswert).
 import { useState } from 'react'
+import AufgabeEintrag from './AufgabeEintrag'
+import AufgabenFilterLeiste from './AufgabenFilterLeiste'
+import type { Aufgabe, AufgabenFilter } from '../typen/todo'
 
-interface AufgabeProps {
-  id: string;
-  text: string;
-  erledigt: boolean;
-}
-
-type Filter = 'alle' | 'offen' | 'erledigt'
-
-const TodoApp = () => {
-  const [aufgaben, setAufgaben] = useState<AufgabeProps[]>([
-    { id: '1', text: 'Erste Aufgabe', erledigt: false },
-    { id: '2', text: 'Zweite Aufgabe', erledigt: true },
-    { id: '3', text: 'Dritte Aufgabe', erledigt: false }
+function TodoApp(): React.JSX.Element {
+  const [aufgaben, setAufgaben] = useState<Aufgabe[]>([
+    { id: 1, text: 'Erste Aufgabe', erledigt: false },
+    { id: 2, text: 'Zweite Aufgabe', erledigt: true },
+    { id: 3, text: 'Dritte Aufgabe', erledigt: false }
   ])
-  const [eingabe, setEingabe] = useState('')
-  const [filter, setFilter] = useState<Filter>('alle')
+  const [eingabe, setEingabe] = useState<string>('')
+  const [filter, setFilter] = useState<AufgabenFilter>('alle')
 
   // Feature 1: Aufgabe hinzufügen
-  const hinzufuegen = () => {
+  const handleHinzufuegen = (): void => {
     const text = eingabe.trim()
     if (text === '') {
       return
     }
-    const neueAufgabe: AufgabeProps = {
-      id: Date.now().toString(),
-      text: text,
-      erledigt: false
-    }
-    setAufgaben([...aufgaben, neueAufgabe])
+    setAufgaben(prev => [...prev, { id: Date.now(), text, erledigt: false }])
     setEingabe('')
   }
 
   // Enter-Taste im Eingabefeld fügt ebenfalls hinzu
-  const tasteGedrueckt = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      hinzufuegen()
+      handleHinzufuegen()
     }
   }
 
   // Feature 2: Status erledigt/offen umschalten
-  const umschalten = (id: string) => {
-    setAufgaben(aufgaben.map((aufgabe) =>
+  const handleUmschalten = (id: number): void => {
+    setAufgaben(prev => prev.map((aufgabe) =>
       aufgabe.id === id ? { ...aufgabe, erledigt: !aufgabe.erledigt } : aufgabe
     ))
   }
 
   // Feature 3: Aufgabe löschen
-  const loeschen = (id: string) => {
-    setAufgaben(aufgaben.filter((aufgabe) => aufgabe.id !== id))
+  const handleLoeschen = (id: number): void => {
+    setAufgaben(prev => prev.filter((aufgabe) => aufgabe.id !== id))
   }
 
   // Anzeige: X von Y Aufgaben erledigt
@@ -75,32 +65,22 @@ const TodoApp = () => {
         value={eingabe}
         placeholder="Neue Aufgabe"
         onChange={(e) => setEingabe(e.target.value)}
-        onKeyDown={tasteGedrueckt}
+        onKeyDown={handleKeyDown}
       />
-      <button onClick={hinzufuegen}>Hinzufügen</button>
+      <button onClick={handleHinzufuegen}>Hinzufügen</button>
 
       <p>{anzahlErledigt} von {aufgaben.length} Aufgaben erledigt</p>
 
-      <div>
-        <button onClick={() => setFilter('alle')} disabled={filter === 'alle'}>Alle</button>
-        <button onClick={() => setFilter('offen')} disabled={filter === 'offen'}>Offen</button>
-        <button onClick={() => setFilter('erledigt')} disabled={filter === 'erledigt'}>Erledigt</button>
-      </div>
+      <AufgabenFilterLeiste filter={filter} onFilterAendern={setFilter} />
 
       <ul>
         {gefilterteAufgaben.map((aufgabe) => (
-          <li key={aufgabe.id}>
-            <span
-              onClick={() => umschalten(aufgabe.id)}
-              style={{
-                textDecoration: aufgabe.erledigt ? 'line-through' : 'none',
-                cursor: 'pointer'
-              }}
-            >
-              {aufgabe.text}
-            </span>
-            <button onClick={() => loeschen(aufgabe.id)}>Löschen</button>
-          </li>
+          <AufgabeEintrag
+            key={aufgabe.id}
+            aufgabe={aufgabe}
+            onUmschalten={handleUmschalten}
+            onLoeschen={handleLoeschen}
+          />
         ))}
       </ul>
     </div>

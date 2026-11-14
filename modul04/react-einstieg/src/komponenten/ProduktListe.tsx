@@ -1,15 +1,6 @@
 import LeerePlatzhalter from './LeerePlatzhalter';
 import PreisAnzeige from './PreisAnzeige';
-
-interface Produkt {
-  id: number;
-  name: string;
-  preis: number;
-}
-
-interface ProduktListeProps {
-  produkte: Produkt[];
-}
+import type { ProduktListeProps } from '../typen/props';
 
 function ProduktListe({ produkte }: ProduktListeProps): React.JSX.Element {
   // Keine Produkte vorhanden: Platzhalter statt leerer Liste anzeigen
@@ -27,6 +18,5 @@ function ProduktListe({ produkte }: ProduktListeProps): React.JSX.Element {
     </ul>
   );
 }
-
 
 export default ProduktListe;

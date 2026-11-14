@@ -1,8 +1,4 @@
-interface BenutzerInfoProps {
-  name: string;
-  email: string;
-  berufsbezeichnung?: string;
-}
+import type { BenutzerInfoProps } from '../typen/props';
 
 function BenutzerInfo({ name, email, berufsbezeichnung }: BenutzerInfoProps): React.JSX.Element {
   return (
@@ -13,6 +9,5 @@ function BenutzerInfo({ name, email, berufsbezeichnung }: BenutzerInfoProps): Re
     </div>
   );
 }
-
 
 export default BenutzerInfo;

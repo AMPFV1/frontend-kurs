@@ -1,23 +1,19 @@
 // src/hooks/useFetch.ts — wiederverwendbarer Fetch-Hook
 import { useState, useEffect } from 'react';
+import type { UseFetchErgebnis } from '../typen/hooks';
 
-interface UseFetchErgebnis<T> {
-  daten: T | null;
-  isLaden: boolean;
-  fehler: string | null;
-  neuLaden: () => void;
-  // Ergänzung zum Beispiel: erlaubt der Komponente, die geladenen Daten
-  // lokal zu ändern (z. B. nach DELETE oder POST)
-  setDaten: React.Dispatch<React.SetStateAction<T | null>>;
-}
-
-function useFetch<T>(url: string): UseFetchErgebnis<T> {
+// url = null: es wird (noch) nichts geladen, z. B. solange keine Auswahl getroffen ist
+function useFetch<T>(url: string | null): UseFetchErgebnis<T> {
   const [daten, setDaten] = useState<T | null>(null);
-  const [isLaden, setIsLaden] = useState<boolean>(true);
+  const [isLaden, setIsLaden] = useState<boolean>(url !== null);
   const [fehler, setFehler] = useState<string | null>(null);
   const [zaehler, setZaehler] = useState<number>(0);
 
   useEffect(() => {
+    if (url === null) {
+      return;
+    }
+
     let abgebrochen = false;  // Verhindert State-Update nach Unmount
 
     const laden = async (): Promise<void> => {

@@ -1,7 +1,5 @@
 //Erstellen Sie eine Komponente Abzeichen.tsx die je nach status-Prop ('aktiv', 'inaktiv', 'gesperrt')  unterschiedliche Farben und Texte anzeigt. 
-interface AbzeichenProps {
-  status: 'aktiv' | 'inaktiv' | 'gesperrt';
-}
+import type { AbzeichenProps } from '../typen/props';
 
 function Abzeichen({ status }: AbzeichenProps): React.JSX.Element {
   let text: string;

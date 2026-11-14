@@ -1,12 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-
-type Theme = 'hell' | 'dunkel'
-
-// Was der Context bereitstellt
-interface ThemeContextWert {
-  theme: Theme;
-  toggleTheme: () => void;
-}
+import type { Theme, ThemeContextWert } from '../typen/theme'
+import type { ThemeProviderProps } from '../typen/props'
 
 const SPEICHER_SCHLUESSEL = 'theme'
 
@@ -23,7 +17,7 @@ function ladeGespeichertesTheme(): Theme {
   }
 }
 
-export function ThemeProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
+export function ThemeProvider({ children }: ThemeProviderProps): React.JSX.Element {
   // Funktion als Anfangswert: wird nur beim ersten Rendern ausgeführt
   const [theme, setTheme] = useState<Theme>(ladeGespeichertesTheme)
 
