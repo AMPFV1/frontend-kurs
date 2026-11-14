@@ -109,3 +109,33 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* ---------- Theme hell / dunkel ----------
+   ThemeContext setzt die Klasse 'hell' oder 'dunkel' auf den body.
+   Die Variablen überschreiben die Werte aus :root für alles innerhalb des body. */
+body.hell {
+  --bg: #ffffff;
+  --text: #333333;
+  --text-h: #08060d;
+  --border: #e5e4e7;
+}
+
+body.dunkel {
+  --bg: #1e1f24;
+  --text: #d1d5db;
+  --text-h: #f3f4f6;
+  --border: #3a3c46;
+}
+
+body.hell,
+body.dunkel {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  cursor: pointer;
+}

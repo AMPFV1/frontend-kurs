@@ -4,6 +4,7 @@ import Startseite from './seiten/Startseite'
 import Produkte from './seiten/Produkte'
 import ProduktDetail from './seiten/ProduktDetail'
 import Kontakt from './seiten/Kontakt'
+import Todos from './seiten/Todos'
 import NichtGefunden from './seiten/NichtGefunden'
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/produkte" element={<Produkte />} />
           <Route path="/produkte/:id" element={<ProduktDetail />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/todos" element={<Todos />} />
           <Route path="/404" element={<NichtGefunden />} />
           {/* Alle unbekannten URLs auf die 404-Seite umleiten */}
           <Route path="*" element={<Navigate to="/404" replace />} />

@@ -239,3 +239,18 @@
 .produkt-link .karte h1 {
   font-size: 1.2rem;
 }
+
+/* Todos */
+.todo-liste {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+.todo-liste li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
