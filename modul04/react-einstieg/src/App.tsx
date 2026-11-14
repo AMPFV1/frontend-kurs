@@ -1,36 +1,27 @@
-import Karte from './komponenten/Karte'
-import ProduktListe from './komponenten/ProduktListe'
-import BenutzerInfo from './komponenten/BenutzerInfo'
-import Avatar from './komponenten/Avatar'
-import avatarBild from './assets/images.jfif'
-import Abzeichen from './komponenten/Abzeichen'
-import Zaehler from './komponenten/Zaehler'
-import TodoApp from './komponenten/TodoApp'
-import BenutzerListe from './komponenten/BenutzerListe'
-import BenutzerPosts from './komponenten/BenutzerPosts'
-import KontaktFormular from './komponenten/KontaktFormular'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Navigation from './komponenten/Navigation'
+import Startseite from './seiten/Startseite'
+import Produkte from './seiten/Produkte'
+import ProduktDetail from './seiten/ProduktDetail'
+import Kontakt from './seiten/Kontakt'
+import NichtGefunden from './seiten/NichtGefunden'
 import './App.css'
-
-const musterProdukte = [
-  { id: 1, name: "Produkt 1", preis: 19.99 },
-  { id: 2, name: "Produkt 2", preis: 29.99 }
-]
 
 function App() {
   return (
     <>
-      <Karte titel="Willkommen">
-        <p>Dies ist eine einfache Karte.</p>
-      </Karte>
-      <ProduktListe produkte={musterProdukte} />
-      <BenutzerInfo name="Max Mustermann" email="max.mustermann@example.com" />
-      <Avatar name="Max Mustermann" bildUrl={avatarBild} />
-      <Abzeichen status="aktiv" />
-      <Zaehler />
-      <TodoApp />
-      <BenutzerListe />
-      <BenutzerPosts />
-      <KontaktFormular />
+      <Navigation />
+      <main>
+        <Routes>
+          <Route path="/" element={<Startseite />} />
+          <Route path="/produkte" element={<Produkte />} />
+          <Route path="/produkte/:id" element={<ProduktDetail />} />
+          <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/404" element={<NichtGefunden />} />
+          {/* Alle unbekannten URLs auf die 404-Seite umleiten */}
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Routes>
+      </main>
     </>
   )
 }

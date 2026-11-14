@@ -1,0 +1,37 @@
+import Karte from '../komponenten/Karte'
+import ProduktListe from '../komponenten/ProduktListe'
+import BenutzerInfo from '../komponenten/BenutzerInfo'
+import Avatar from '../komponenten/Avatar'
+import avatarBild from '../assets/images.jfif'
+import Abzeichen from '../komponenten/Abzeichen'
+import Zaehler from '../komponenten/Zaehler'
+import TodoApp from '../komponenten/TodoApp'
+import BenutzerListe from '../komponenten/BenutzerListe'
+import BenutzerPosts from '../komponenten/BenutzerPosts'
+
+// Musterdaten — zum Testen des Platzhalters durch [] ersetzen
+const musterProdukte = [
+  { id: 1, name: "Produkt 1", preis: 19.99 },
+  { id: 2, name: "Produkt 2", preis: 29.99 }
+]
+
+// Startseite: zeigt die Komponenten aus den bisherigen Übungen
+function Startseite(): React.JSX.Element {
+  return (
+    <>
+      <Karte titel="Willkommen">
+        <p>Dies ist eine einfache Karte.</p>
+      </Karte>
+      <ProduktListe produkte={musterProdukte} />
+      <BenutzerInfo name="Max Mustermann" email="max.mustermann@example.com" />
+      <Avatar name="Max Mustermann" bildUrl={avatarBild} />
+      <Abzeichen status="aktiv" />
+      <Zaehler />
+      <TodoApp />
+      <BenutzerListe />
+      <BenutzerPosts />
+    </>
+  )
+}
+
+export default Startseite
