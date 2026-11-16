@@ -2,6 +2,7 @@
 import type { Benutzer } from './benutzer';
 import type { Produkt } from './produkt';
 import type { Aufgabe, AufgabenFilter, Todo } from './todo';
+import type { Nachricht } from './ai';
 
 export interface AbzeichenProps {
   status: 'aktiv' | 'inaktiv' | 'gesperrt';
@@ -61,4 +62,8 @@ export interface TodoFormularProps {
 
 export interface ThemeProviderProps {
   children: React.ReactNode;
+}
+
+export interface NachrichtBlaeschenProps {
+  nachricht: Nachricht;
 }

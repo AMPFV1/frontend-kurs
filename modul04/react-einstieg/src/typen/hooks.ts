@@ -1,4 +1,5 @@
 // Rückgabewerte der Custom Hooks
+import type { Nachricht } from './ai';
 
 export interface UseFetchErgebnis<T> {
   daten: T | null;
@@ -15,4 +16,17 @@ export interface UseMutationErgebnis<T, U> {
   isLaden: boolean;
   fehler: string | null;
   erfolg: boolean;
+}
+
+export interface UseAIErgebnis {
+  nachrichten: Nachricht[];
+  isStreaming: boolean;
+  fehler: string | null;
+  sendeNachricht: (inhalt: string) => Promise<void>;
+  zuruecksetzen: () => void;
+}
+
+export interface UseAIOptionen {
+  systemPrompt?: string;
+  maxNachrichten?: number;  // Kontext begrenzen um Kosten zu sparen
 }

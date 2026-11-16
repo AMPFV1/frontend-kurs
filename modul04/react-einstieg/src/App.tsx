@@ -7,6 +7,7 @@ import Kontakt from './seiten/Kontakt'
 import Todos from './seiten/Todos'
 import Orakel from './seiten/Orakel'
 import Streaming from './seiten/Streaming'
+import Chat from './seiten/Chat'
 import NichtGefunden from './seiten/NichtGefunden'
 import './App.css'
 
@@ -23,6 +24,7 @@ function App(): React.JSX.Element {
           <Route path="/todos" element={<Todos />} />
           <Route path="/orakel" element={<Orakel />} />
           <Route path="/streaming" element={<Streaming />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/404" element={<NichtGefunden />} />
           {/* Alle unbekannten URLs auf die 404-Seite umleiten */}
           <Route path="*" element={<Navigate to="/404" replace />} />

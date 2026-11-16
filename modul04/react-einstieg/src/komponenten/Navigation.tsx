@@ -14,6 +14,7 @@ function Navigation(): React.JSX.Element {
       <NavLink to="/todos" className={linkKlasse}>Todos</NavLink>
       <NavLink to="/orakel" className={linkKlasse}>Orakel</NavLink>
       <NavLink to="/streaming" className={linkKlasse}>Streaming</NavLink>
+      <NavLink to="/chat" className={linkKlasse}>Coach</NavLink>
       <NavLink to="/kontakt" className={linkKlasse}>Kontakt</NavLink>
       <ThemeToggle />
     </nav>
